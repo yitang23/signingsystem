@@ -1,0 +1,144 @@
+//教师登录
+      "select * from teacher where tphone ='" + user.getTphone() + "' and tpassword ='" + user.getTpassword() + "'";
+
+          
+
+ //学生注册
+        "INSERT INTO student VALUES ('"+student.getSno()+"','"+student.getSname() +"','"+student.getSphone() +"','"+student.getSpassword() +"','')";
+           
+
+ //根据phone查询学生信息
+         "select * from student where sphone ='"+ student.getSphone() + "'";
+            
+
+ //根据id查询学生信息
+            "select * from student where sno ='"+ student.getSno() + "'";
+           
+
+ //添加课程
+   
+           "INSERT INTO courses VALUES ('"+courses.getCid() +"','"+courses.getCname() +"','"+courses.getTid()+"',NULL,NULL)";
+            
+
+ //根据cid查询课程信息
+    
+           "select * from courses where cid ='"+ courses.getCid()+ "'";
+           
+
+    //根据tid查询课程信息
+   
+            "select * from courses where tid ='"+tid+ "'";
+           
+
+    //根据tid,cid查询学生名单通过的信息
+   
+           "select sname,sno,sphone from student where sno in " + "(select sno from student where sno in " + "(SELECT sno FROM manage_student_course where cid = '"+cid+ "'AND tid = '"+tid+"'AND status=1))";
+           
+
+    //根据tid在签到表中查询该老师的课程
+   
+           "select courses.cid,cname from courses,set_qd " + "where courses.cid = set_qd.cid and courses.tid = '"+tid+"'";
+           
+
+    //计算某课程中已经签到的人数
+   
+             "select count(*) from qdrecord where cid='"+cid+"' and qteachermsg=1" ;
+        
+    //计算课程查询课程人数
+  
+            String sql= "select count(*) from manage_student_course where cid='"+cid+"' and status=1" ;
+            
+    //计算课程中未处理的人数
+  
+            "select count(*) from manage_student_course where cid='"+cid+"' and status=0" ;
+           
+
+
+    //根据cid查询签到记录中的学生名单
+   
+             "SELECT qid,student.sname,student.sno,qdrecord.cid," +"qdrecord.qtime,qdrecord.qteachermsg,qdrecord.lng,qdrecord.lat " +"FROM qdrecord,student WHERE qdrecord.sno=student.sno " +"AND qdrecord.cid='" +cid+ "'";
+            
+
+    //根据tid查询所有的课程名
+ 
+             "select cname from courses where tid ='"+tid+ "'";
+            
+
+    //根据课程名查询是否已经存在该课程的签到设置
+  
+            "select set_qd.cid,cname from courses,set_qd " +  "where courses.cid = set_qd.cid and courses.tid and cname='" +cname+"'";
+          
+
+    //根据cname查cid信息
+    
+             "select cid from courses where cname ='"+ cname+ "'";
+            
+
+    //插入设置签到
+           "INSERT INTO set_qd VALUES ('"+setqd.getCid()+"','"+setqd.getStarttime()+"','"+setqd.getContinue_time()+"','"+setqd.getLng()+"','"+setqd.getLat() +"')";
+          
+
+    //根据tid,cid查询学生名单还未通过的学生信息
+  	 "select sname,sno,sphone from student where sno in " +"(select sno from student where sno in " + "(SELECT sno FROM manage_student_course where cid = '"+cid+ "'AND tid = '" +tid+"'AND status=0))";
+           
+    //同意学生加入课程
+    
+           "UPDATE manage_student_course SET status = 1 WHERE sno = '"+sno +"' AND cid='"+cid+"'";
+           
+
+    //拒绝学生加入课程
+   
+            "UPDATE manage_student_course SET status = 2 WHERE sno = '"+sno+"' AND cid='"+cid+"'";
+          
+
+    //插入签到时将该课程所有学生插入到签到记录
+    
+            "insert into qdrecord (sno,cid,qtime,lng,lat,qteachermsg) " +  "SELECT sno,cid,null,0,0,0 FROM manage_student_course where cid = '"+cid+"'";
+      
+
+    //根据sno查询学生已有课程的全部信息
+   
+       "select sno,teacher.tid,tname,courses.cid,cname from"  " teacher,manage_student_course,courses where " +"manage_student_course.tid=teacher.tid AND " + "manage_student_course.cid=courses.cid AND " + "sno='"+sno+"' ANd status=1;";
+            
+    //根据sno查询学生没有课程信息
+    
+          "select courses.cid,cname,courses.tid,tname from " + "courses,teacher where courses.cid not in (select " + "cid from manage_student_course where sno ='"+sno+"') " +"AND courses.tid=teacher.tid;";
+           
+    //申请加入课程
+    
+            String sql="INSERT INTO manage_student_course VALUES ('"+info.getSno()+"','"+info.getCid()+"','"+info.getTid() +"',0)";
+           
+    //申请加入课程
+
+            String sql= "SELECT manage_student_course.sno,manage_student_course.cid," 
+	+"cname,manage_student_course.tid,tname,status " 
+	+"FROM manage_student_course,courses,teacher WHERE " 
+	+"manage_student_course.cid=courses.cid AND " +
+                    "teacher.tid=manage_student_course.tid and " +
+                    "sno='"+sno+"' ANd (status=2 or status=0);";
+           
+
+    //根据学号查询已经完成签到的记录
+   
+            
+             "SELECT set_qd.cid,cname,qtime,continue_time " +
+                    "FROM qdrecord,set_qd,courses where sno='"+sno+"' " +
+                    "And qteachermsg=1 AND qdrecord.cid=set_qd.cid AND " +
+                    "courses.cid=qdrecord.cid;";
+
+            
+    //根据学号查询待完成签到的记录
+
+            String sql= "SELECT set_qd.cid,cname,qtime,continue_time " +
+                    "FROM qdrecord,set_qd,courses where sno='"+sno+"' " +
+                    "And qteachermsg=0 AND qdrecord.cid=set_qd.cid AND " +
+                    "courses.cid=qdrecord.cid;";
+          
+
+
+    //签到成功
+  
+            String sql="UPDATE qdrecord SET qteachermsg = 1,qtime=now() " +
+                    "WHERE (sno = '"+sno+"' AND cid='"+cid+"' AND qtime=" +
+                    "'"+qtime+"')";
+         
