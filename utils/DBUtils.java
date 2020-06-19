@@ -26,9 +26,9 @@ import java.util.Map;
  */
 public class DBUtils {
     private static String driver = "com.mysql.jdbc.Driver";//MySQL 驱动
-    private static String url = "jdbc:mysql://10.0.2.2/test1";//MYSQL数据库连接Url
-    private static String user = "root";//用户名
-    private static String password = "123456";//密码
+    private static String url = "jdbc:mysql://112.124.21.19/attendance";//MYSQL数据库连接Url
+    private static String user = "wushaoxin";//用户名
+    private static String password = "12345Wsx/";//密码
 
     private static Connection getConn(){
 
@@ -616,7 +616,9 @@ public class DBUtils {
                     +"','"+setqd.getStarttime()
                     +"','"+setqd.getContinue_time()
                     +"','"+setqd.getLng()
-                    +"','"+setqd.getLat() +"')";
+                    +"','"+setqd.getLat()
+                    +"','"+setqd.getAddress()
+                    +"')";
             System.out.println(sql);
             st.execute(sql);
             b=true;
@@ -726,7 +728,7 @@ public class DBUtils {
             Statement st = conn.createStatement();
 
             String sql="insert into qdrecord (sno,cid,qtime,lng,lat,qteachermsg) " +
-                    "SELECT sno,cid,null,0,0,0 FROM manage_student_course where cid = '"+cid+"'";
+                    "SELECT sno,cid,null,0,0,0 FROM manage_student_course where cid = '"+cid+"' And status=1";
             System.out.println(sql);
             st.execute(sql);
             b=true;
