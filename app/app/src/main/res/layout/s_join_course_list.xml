@@ -37,11 +37,10 @@
                 android:background="@drawable/back"></Button>
             <Button
                 android:id="@+id/apply"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="350dp"
-
+                android:layout_alignParentRight="true"
                 android:background="@drawable/apply"></Button>
         </RelativeLayout>
 

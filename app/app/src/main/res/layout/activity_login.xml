@@ -82,8 +82,7 @@
             android:layout_height="wrap_content"
             android:text="记住密码"
             android:textColor="#FF00CCCC"
-            android:layout_marginLeft="280dp"
-            />
+            android:layout_alignParentRight="true"/>
 
         <TextView
             android:layout_width="wrap_content"

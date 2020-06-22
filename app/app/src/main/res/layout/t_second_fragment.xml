@@ -19,6 +19,7 @@
 
         <Button
             android:id="@+id/exit"
+            android:background="@drawable/button_circle_shape"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

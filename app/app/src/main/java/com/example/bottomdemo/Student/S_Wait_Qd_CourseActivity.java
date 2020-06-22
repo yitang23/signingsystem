@@ -24,6 +24,9 @@ import com.example.bottomdemo.login.Student;
 import com.example.bottomdemo.login.Student_info;
 import com.example.bottomdemo.utils.DBUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +42,10 @@ public class S_Wait_Qd_CourseActivity extends AppCompatActivity implements Adapt
     private Handler handler=null;
     String sno,sname;
     Map map;
+    private static long second=0;
+    String tDate;
     Map map2;
+    Map map3;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,9 +68,27 @@ public class S_Wait_Qd_CourseActivity extends AppCompatActivity implements Adapt
         new Thread(){
             public void run(){
                 map=new HashMap();
+                map2=new HashMap();
+                map3=new HashMap();
                 mData= DBUtils.Wait_qd_by_sno(stu.getSno());
+                long a=0,l;
                 for(Finish_qd cr:mData){
                     map.put(cr.getCid(),DBUtils.Count_finish(cr.getCid()));
+                    map3.put(cr.getCid(),DBUtils.Start_Time(cr.getCid()));
+                    SimpleDateFormat simpleFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                    try {
+                        Date fromDate=simpleFormat.parse(DBUtils.Start_Time(cr.getCid()));
+                        tDate=simpleFormat.format(new Date());
+                        Date toDate=simpleFormat.parse(tDate);
+                        l=fromDate.getTime()+Integer.parseInt(cr.getContinue_time())*60*1000-toDate.getTime();
+                        second=l/1000;
+                        a=System.currentTimeMillis()+second*1000;
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    map2.put(cr.getCid(),a);
+
                 }
                 handler.post(runnableUi);
             }
@@ -74,7 +98,7 @@ public class S_Wait_Qd_CourseActivity extends AppCompatActivity implements Adapt
     Runnable runnableUi=new Runnable() {
         @Override
         public void run() {
-            mAdapter=new S_Wait_Qd_Adapter(mData,mContext,map);
+            mAdapter=new S_Wait_Qd_Adapter(mData,mContext,map,map2,map3);
             listView.setAdapter(mAdapter);
         }
     };

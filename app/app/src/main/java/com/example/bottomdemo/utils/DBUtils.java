@@ -1010,4 +1010,33 @@ public class DBUtils {
         }
         return count;
     }
+    //计算某课程中已经签到的人数
+    public static String Start_Time(String cid) {
+        String starttime=null;
+        Connection conn = getConn();
+        if (conn != null){
+            Log.d("数据库连接状况", "Login: 成功");
+        }else {
+            Log.d("数据库连接状况", "Login: 失败");
+        }
+        try {
+            Statement st = conn.createStatement();
+            String sql= "SELECT starttime FROM `set_qd` where cid='"+cid+"'" ;
+            ResultSet res = st.executeQuery(sql);
+            while (res.next())
+            {
+                starttime=res.getString("starttime");
+            }
+            System.out.println(sql);
+            conn.close();
+            st.close();
+            res.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return starttime;
+    }
+
+
 }
