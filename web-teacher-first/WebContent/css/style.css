@@ -7,7 +7,7 @@ body,div,h1,form,table,ul,li{
 	font-size:20px;
 	line-line:1.5em;
 	border-bottom:2px solid #ddd;
-	padding:15px;
+	padding:6px;
 	font-family:"Microsoft YaHei";
 }
 .left_menu .title{
@@ -16,6 +16,7 @@ body,div,h1,form,table,ul,li{
 }
 form{
 	padding:15px;
+	background:#ffffff;
 }
 .btn,.back-btn{
 	display:inline-block;
@@ -24,13 +25,14 @@ form{
 	color:#fff;
 	background:#EE2C2C;
 	font-size:13px;	
+	border-radius:3px;
 }
 .back-btn{
 	float:right;
 }
 .btn:hover,.back-btn:hover{
-	background:#D1EEEE;
-}/*°´Å¥ÑÕÉ«*/
+	background:#f97c7c;;
+}/*æŒ‰é’®é¢œè‰²*/
 .success{
 	color:blue;
 
@@ -41,37 +43,34 @@ form{
 .admin .tab{
 	border:0;
 	margin:15px;
-	width:98%;
+	width:100%;
 	
 }
 .admin .tab td{
-	border-bottom:1px solid #ddd;
-	padding:5px;
+	border-bottom:2px solid #ddd;
+	padding:3px;
 }
 .text-center{
 	text-align:center;
 }
 .top{
-	padding:15px;
-	background: #000000 ;
+/* 	padding:15px; */
+	background: #62b0ff;
+	border-radius:3px;
+	height: 85px;
+	margin:20px auto 10px;
+	box-shadow: -2px 6px 12px rgb(138, 142, 162);
+	position: relative;
 }
-.top h1{
-	color:#fff;
-	font-family:"Microsoft YaHei";
-	letter-spacing:7px;
-	height:20px;
-}
-.name{
-	display: inline-block;
-}
-.top h3{
-	color:#FAEBD7;
-	font-family:"Microsoft YaHei";
-	letter-spacing:7px;
-	height:5px;
-}
+
+/* .top h3{ */
+/* 	color:#FAEBD7; */
+/* 	font-family:"Microsoft YaHei"; */
+/* 	letter-spacing:7px; */
+/* 	height:5px; */
+/* } */
 .left_menu{
-	width:120px;
+	width:135px;
 	height:630px;
 	border-right:2px solid #ddd;
 	float:left;
@@ -85,7 +84,7 @@ form{
 }
 .right{
 	float:left;
-	width:876px;
+	width:860px;
 }
 .main-frame{
 	width:1000px;
@@ -102,15 +101,14 @@ form{
 	padding:0;
 }
 .left_menu a{
-	height:24px;
 	padding:15px;
 	display:block;
 	font-weight:lighter;
-	border-bottom:2px dotted #ddd;
+	border-bottom:1px dotted #f5f5f5;
 	text-align:center;
 	text-decoration:none;
 	font-size:20px;
-	color:black;
+	color:#f5f5f5;
 	font-family:SimHei;
 }
 .left_menu a:hover{
@@ -352,20 +350,31 @@ form{
 }
 
 .login_title{
-	font-size:14px;
+	display: inline-block;
+    vertical-align: middle;
 	font-family:'New Century Schoolbook','New York';
-	font-weight:normal;
-	padding:2px 2px 0 0;
-	width:1200px;
-	margin:0 auto;
+	font-weight:800;
+	padding:13px 10px;
+	width:100%;
+	margin:10px 0 auto;
+	text-align:center;
 }
-.login_title h2{
-	font-size:20px;
-	font-family:"Times New Roman";
+.login_title span{
+	display:inline-block;
+	width:45%;
+	color:black;
+     font-size:60px;
+	font-family:'New Century Schoolbook','New York';
 	font-weight:lighter;
 	font-weigh:160px;
 }
-
+.login_title img{
+	width:88px;
+	height:72px;
+	float:left;
+	margin-top:10px;
+	
+}
 .login_title a{
 	font-size:25px;
 	text-decoration:none;
@@ -381,18 +390,19 @@ form{
 }
 
 .login_main .login_bg{
-	width:1320px;
+	width:100%;
 	height:800px;
     background:url(..//images//tim.jpg) no-repeat;
-	margin:15px auto;
 
 }
 .login_main .login_bg .login{
 	height:470px;
 	width:350px;
 	background:white;
-	float:right;
-	margin:15px 40px;
+	margin:0 auto;
+}
+.login_main .login_bg .register{
+	height:527px;
 }
 .login_main .login_bg .login h2{
 	font-size:20px;
@@ -410,9 +420,9 @@ form{
 	font-size:20px;
 }
 .login_main .login_bg .login input{
-	padding:15px;
+	padding:19px;
 	display:inline-block;
-	width:150px;
+	width:180px;
 }
 .login_main .login_bg .login .login_button,.login_main .login_bg .login .login_button_2{
 	margin:22px;
@@ -434,8 +444,7 @@ form{
 	
 .login_main .login_bg .login .tishi{
 	color:red; 
-	margin:10px;
-	padding:14px;
+	margin:-10px;
 	display:block;
 	text-align:center;
 	font-size:12px;
@@ -501,9 +510,9 @@ form{
 }
 .register_main .register_bg .register input{
 	margin:0 auto;
-	padding:15px;
+	padding:19px;
 	display:inline-block;
-	width:150px;
+	width:180px;
 	height:10px;
 }
 .register_main .register_bg .register .register_button,.register_main .register_bg .register .register_button_2{
@@ -532,5 +541,87 @@ form{
 	text-align:center;
 	font-size:12px;
 		}
-
-
+.title{
+	color:white;
+	font-weight:800;
+}
+.list{
+	margin-right:10px;
+}
+.info{
+	background-color:#5bc0de;
+	color:white;
+	padding:5px;
+	border-color:#46b8da;
+	border-radius:3px;
+}
+.select_submit{
+	 background-color:#5cb85c;
+	 border-color:#4cae4c;
+	 border:none;
+	 padding: 6px 15px;
+	 color:  white;
+	 border-radius:3px;
+	 margin-left:10px;
+}
+.select_submit:hover{
+	 background-color:#5ddc1e;
+}
+.choosed_course{
+	color:#4393e4;
+	height: 42px;
+	text-align:  center;
+	line-height:42px;
+}
+.tab input{
+	padding:6px;
+	 
+}
+.search_commit{
+	  background-color:#5cb85c;
+	 border-color:#4cae4c;
+	 border:none;
+	 padding: 6px 15px;
+	 color:  white;
+	 border-radius:3px;
+	 margin-left:10px;
+	  width:60px;
+}
+.search_commit:hover{
+	 background-color:#5ddc1e;  
+}
+.title_right{
+	color:black;
+}
+.add_tr td{
+	padding:20px;
+}
+.choose_file{
+	border:1px solid #ccccc5;
+	margin:  10px;
+}
+.back{
+	color:white;
+	position: absolute;
+	top: 29%;
+	right: 5%;
+}
+.user_name{
+	position: absolute;
+	top: 31%;
+	right: 16%;
+	color:white;
+	font-size: 20px;
+}
+.top h1{
+	color:#fff;
+	font-family:"Microsoft YaHei";
+	letter-spacing:7px;
+	height:20px;
+	position: absolute;
+	top: 2.5%;
+	left: 7%;
+	font-size: 50px;
+	font-weight:bold;
+	
+}

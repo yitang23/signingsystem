@@ -16,35 +16,41 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="http://localhost:8080/news/css/style.css">
+<link rel="stylesheet" href="http://localhost:8080/news/bootstrap-3.3.7-dist/css/bootstrap.min.css"> 
+<script src="http://localhost:8080/news/bootstrap-3.3.7-dist/js/jquery-3.2.1.min.js"></script> 
+<script src="http://localhost:8080/news/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script> 
 <title>学生系统管理</title>
 </head>
 <body>
-	<div class="register_title"><h2>学生管理系统</h2>
-	</div>
-	<div class="register_main">
-		<div class="register_bg">
-			<div class="register">
-			<h2 >用户注册</h2>
+	
+	
+	<div class="login_main">
+		<div class="login_bg">
+			 <div class="login_title">
+		    	<span><img src="images//login-logo.png" align=“absbottom”></img>学生管理系统</span>
+	        </div>
+	        <div class="login register">
+			<h2 ><b>用户注册</b></h2>
   			<form action="registerServlet" method="post" id="frm" >
   			<label>&nbsp&nbsp&nbsp&nbsp手机号:</label>
-  			<input type="text" name="tphone" id="tphone"placeholder="输入手机号"></input>
+  			<input type="text" name="tphone" class="form-control"  id="tphone"placeholder="输入手机号"></input>
   			<p>
   			<label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp工号:</label>
-  			<input type="text" name="tid" id="tid"placeholder="输入工号"></input>
+  			<input type="text" name="tid" class="form-control"  id="tid"placeholder="输入工号"></input>
   			</p>
   			<p>
   			<label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp姓名:</label>
-  			<input type="text" name="tname" id="tname"placeholder="输入姓名"></input>
+  			<input type="text" name="tname" class="form-control" id="tname"placeholder="输入姓名"></input>
   			</p>
   			<p>
   			<label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp密码:</label>
-  			<input type="password" name=tpassword id="tpassword"placeholder="输入密码"></input>
+  			<input type="password" name=tpassword class="form-control" id="tpassword"placeholder="输入密码"></input>
   			</p>
   			<p>
   			<label>确认密码:</label>
-  			<input type="password" name="re_tpassword" id="re_tpassword"placeholder="确认密码"></input>
+  			<input type="password" name="re_tpassword" class="form-control" id="re_tpassword"placeholder="确认密码"></input>
   			</p>
-  			<p><a class="register_button" href="javascript:void(0)" onclick="post()">确认</a></p>
+  			<p><a class="register_button login_button_2 " href="javascript:void(0)"  onclick="post()">确认</a></p>
 			<p><span id="tishi" class="tishi"><%=a %></span></p>
 			</form>
 			</div>

@@ -27,21 +27,21 @@
 <jsp:include page="left.jsp"></jsp:include>
 <div class="right">
 <div class="admin">
-<h1 class="title">名单管理<a href="main.jsp?tid=<%=tid %>" class="back-btn">返回主页面</a></h1>
-<table class="tab" cellspacing="0" style="background-color:#d0d0d0;margin:0;padding:0">
+<!-- <h1 class="title">名单管理</h1> -->
+<table class="tab" cellspacing="0" style="margin:0;padding:0">
 	<tr>
 		<td colspan="5">
 		<form action="newsList.jsp" method="post" id="frm">
 			<label> 课程:</label>
-			<select name="cid" id="cid">
-  			<option value="0">请选择你的课程</option>
+			<select name="cid" id="cid" class="info">
+  			<option value="0" >请选择你的课程</option>
 			<%
 				for(Courses FL:courselist){
 			  			out.println("<option value=\""+FL.getCid()+"\">"+FL.getCname()+"</option>");
 			  						}		
 			%>
 			</select>
-			<input type="submit" name="submit" value="提交" onclick="return go()"> 
+			<input type="submit" class="select_submit" name="submit" value="提交" onclick="return go()"> 
 		</form>
 		</td>
 	</tr>

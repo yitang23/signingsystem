@@ -40,17 +40,18 @@
 <jsp:include page="left.jsp"></jsp:include>
 <div class="right">
 <div class="admin">
-<h1 class="title"><%=cid%>: <%=cname %><a href="main.jsp?tid=<%=tid %>" class="back-btn">返回主页面</a></h1>
-<table class="tab" cellspacing="0" style="background-color:#d0d0d0;margin:0;padding:0">
+<div class="title choosed_course"><span style="color:black; float:left">课程编号及名称：</span>
+<span style="float:left"><%=cid%> <%=cname %></span></div>
+<table class="tab" cellspacing="0" style="margin:0;padding:0">
 	<tr>
 		<td colspan="5">
 		<form action="newsList.jsp" method="post" id="frm">
 			<label>姓名</label>
-			<input type="text" name="sname" id="sname" value="<%=sname==null?"":sname%>"/>
+			<input type="text" class="form-control" name="sname" id="sname" value="<%=sname==null?"":sname%>"/>
 			
 			<input type="hidden" name="p" id="go_page_number" value="<%=p%>">
 			<input type="hidden" name="cid" id="cid" value="<%=cid%>">
-			<input type="submit" value="搜索"/>
+			<input type="submit" class="search_commit" value="搜索"/>
 		</form>
 		</td>
 	</tr>
@@ -94,7 +95,7 @@
 			<a href="javascript:void(0)" onclick="go(<%=p+1%>)" >下一页</a>
 			<a href="javascript:void(0)" onclick="go(<%=total-1%>)">尾页</a>
 		<%} %>
-			<span>共<%=total %>页</span>
+			<span>共<%=total%>页</span>
 			<span>转到第
 			<select onchange="go(this.value)"> 
 				<%for(int j=0;j<total;j++){%>
@@ -107,18 +108,12 @@
 		</tr>
 		<tr><td colspan="5" style="border-bottom:0">
 		<a class="btn" href="addArticle.jsp">添加学生</a>
-		 
-<!-- 		<a href="ExcelImportServlet" enctype="multipart/form-data" method="post"> -->
-<!--            <input type="file" name="file"> -->
-<!--            <input type="submit" value="upload"> -->
-<!-- 		</a>	 -->
-     <form action="${pageContext.request.contextPath}/ExcelImportServlet" enctype="multipart/form-data" method="post">
-       <input type="file" name="file">
-       <input type="submit" value="upload">
-  </form>
-	
-		<a class="btn" href="javascript:void(0)">excel导入</a>
-	    <a class="btn" href="javascript:void(0)" onclick="DeleteNews()">删除</a>
+		 <a class="btn" href="javascript:void(0)" onclick="DeleteNews()">删除学生</a>
+
+     <form action="${pageContext.request.contextPath}/ExcelImportServlet" enctype="multipart/form-data" method="post" class="choose_file">
+       <input type="file" name="file" value="excel导入" >
+       <input type="submit" class="search_commit"  value="上传">
+  </form>   
 		</td></tr>
 </table>
 </div>	

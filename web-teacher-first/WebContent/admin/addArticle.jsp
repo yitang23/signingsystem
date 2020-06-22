@@ -18,6 +18,9 @@
 	<script charset="utf-8" src="kindeditor/kindeditor-all-min.js"></script>
 	<script charset="utf-8" src="kindeditor/lang/zh-CN.js"></script>
 	<script charset="utf-8" src="kindeditor/plugins/code/prettify.js"></script>
+	<link rel="stylesheet" href="http://localhost:8080/news/bootstrap-3.3.7-dist/css/bootstrap.min.css"> 
+ <script src="http://localhost:8080/news/bootstrap-3.3.7-dist/js/jquery-3.2.1.min.js"></script> 
+   <script src="http://localhost:8080/news/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script> 
 </head>
 <body>
 <div class="main-frame">
@@ -25,32 +28,32 @@
 <jsp:include page="left.jsp"></jsp:include>
 <div class="right">
 <div class="admin">
-<h1 class="title">添加学生<a href="newsList.jsp?cid=<%=cid %>" class="back-btn">返回</a></h1>
+<h1 class="title title_right">添加学生<a href="newsList.jsp?cid=<%=cid %>" class="back-btn">返回</a></h1>
 	<form name="frm" action="InsertArticle" id="frm" method="post">
 	<table>
-	<tr>
+	<tr class="add_tr">
 	<td>学号:</td>
-	<td><input id="sno" name="sno" autocomplete="off" maxlength="100" type="text"/></td>
+	<td><input id="sno" name="sno" class="form-control"  autocomplete="off" maxlength="100" type="text"/></td>
 	<td id="err_sno"></td>
 	</tr>
-	<tr>
+	<tr class="add_tr">
 	<td>姓名:</td>
 	<td> 
-		<input id="sname" name="sname" autocomplete="off" maxlength="100" type="text"/></td>
+		<input id="sname" name="sname" class="form-control" autocomplete="off" maxlength="100" type="text"/></td>
 	</td>
 	<td id="err_sname"></td>
 	</tr>
 	
-	<tr>
+	<tr class="add_tr">
 	<td>手机号:</td>
-	<td><input id="sphone" name="sphone" autocomplete="off" maxlength="20" type="text"/></td>
+	<td><input id="sphone" name="sphone" class="form-control"  autocomplete="off" maxlength="20" type="text"/></td>
 	<td id="err_sphone"></td>
 	</tr>
 	<input type="hidden" name="tid" id="tid" value="<%=tid%>">
 	<input type="hidden" name="cid" id="cid" value="<%=cid%>">
 	
 	
-	<tr><td></td><td><a class="btn" onclick="start();" href="javascript:void(0)">保存</a></td></tr>
+	<tr class="add_tr"><td></td><td><a class="btn" onclick="start();" href="javascript:void(0)">保存</a></td></tr>
 	
 	</table>
 	</form>

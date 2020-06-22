@@ -32,16 +32,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 //导入excel
 @WebServlet("/ExcelImportServlet")
 public class ExcelImportServlet extends HttpServlet {
-	
-	/**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ExcelImportServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	static String cid=null;
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("charset=UTF-8");
+        
         try {
             FileItemFactory factory = new DiskFileItemFactory();
             // 文件上传核心工具类
@@ -55,16 +50,18 @@ public class ExcelImportServlet extends HttpServlet {
                 // 遍历
                 for (FileItem item : list) {
                     if (!item.isFormField()) {
-                        readExcel(item.getInputStream());
-                        //ExcelTool.Tool(item.getInputStream(),"sheet1");
+                        readExcel(item.getInputStream());      
                     }
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+                
+        response.sendRedirect("admin/newsList.jsp?cid="+cid);
 
     }
+
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
      * response)
@@ -74,27 +71,19 @@ public class ExcelImportServlet extends HttpServlet {
         // TODO Auto-generated method stub
         doGet(request, response);
     }
+    
     //读取Excel的工具
     public static void readExcel(InputStream input) throws Exception {
-        String URL = "jdbc:mysql://localhost:3306/a?autoReconnect=true";
-        final String USERNAME = "root";
-        final String PWD = "root";
+        String URL = "jdbc:mysql://112.124.21.19:3306/attendance?autoReconnect=true";
+        final String USERNAME = "wuhao";
+        final String PWD = "12345Wh/";
         Connection connection = null;
         PreparedStatement pstmt1 = null;
         PreparedStatement pstmt2 = null;
-        String name = "data";
         //用JDBC建表
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = (Connection) DriverManager.getConnection(URL, USERNAME, PWD);
-
-            //从数据库中添加ID，和数据DATA当作备份。
-            String tableSql = "create table " + name + "( id INT PRIMARY KEY ,sno varchar(11) NOT NULL,"
-            		+ " sname varchar(50) NOT NULL, sphone varchar(50) NOT NULL,  "
-            		+ "spassword varchar(50) NOT NULL); ";
-
-            pstmt1 = (PreparedStatement) connection.prepareStatement(tableSql);
-            pstmt1.executeUpdate();
+            connection = (Connection) DriverManager.getConnection(URL, USERNAME, PWD);          
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -119,22 +108,24 @@ public class ExcelImportServlet extends HttpServlet {
             int columtotal = sheet.getRow(0).getPhysicalNumberOfCells();// 表头总共的列数
 
             for (i = 1; i <= totalRow; i++) {
+                //for(j = 0; j < columtotal; j++) {
                 //使用JDBC将表格数据存到数据库
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
                     connection = (Connection) DriverManager.getConnection(URL, USERNAME, PWD);
 
                     //从数据库中添加ID，和数据DATA当作备份。
-                    String sql = "insert into data(ID,sno,sname,sphone,spassword) values(?,?,?,?,?)";
+                    String sql = "insert into manage_student_course (sno,cid,tid,status) values(?,?,?,?)";
                     pstmt2 = (PreparedStatement) connection.prepareStatement(sql);
-                    pstmt2.setInt(1, i);             
-                    
-                    int n = 2;               
-                    for (j =0; j < columtotal; j++) {
-                        sheet.getRow(i).getCell(j).setCellType(Cell.CELL_TYPE_STRING);                 
-                        	pstmt2.setString(n, sheet.getRow(i).getCell(j).getStringCellValue());                     
+              
+                    int n=1;
+                    for (j = 0; j < columtotal; j++) {
+                        sheet.getRow(i).getCell(j).setCellType(Cell.CELL_TYPE_STRING);
+                        pstmt2.setString(n, sheet.getRow(i).getCell(j).getStringCellValue());
                         n++;
                     }
+                    cid=sheet.getRow(1).getCell(1).getStringCellValue();
+                    
                     pstmt2.executeUpdate();
 
                 } catch (SQLException e) {
@@ -155,7 +146,7 @@ public class ExcelImportServlet extends HttpServlet {
             System.out.println("总行数:" + totalRow + ",总列数:" + columtotal);
             for (i = 1; i <= totalRow; i++) {// 遍历行
                 for (j = 0; j < columtotal; j++) {
-                  //  sheet.getRow(i).getCell(j).setCellType(Cell.CELL_TYPE_STRING);
+                    sheet.getRow(i).getCell(j).setCellType(Cell.CELL_TYPE_STRING);
                     System.out.print(sheet.getRow(i).getCell(j).getStringCellValue() + "      ");
                 }
                 System.out.println();

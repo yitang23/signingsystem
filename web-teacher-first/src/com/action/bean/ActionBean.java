@@ -1,5 +1,6 @@
 package com.action.bean;
 
+
 import com.entity.Stu_manage;
 import com.entity.Courses;
 import com.entity.Teacher;
